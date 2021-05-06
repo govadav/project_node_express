@@ -1,0 +1,47 @@
+<nav class = "navbar navbar-custom navbar-toggleable-md">
+<div class = "wide-nav-wrapper">
+  <button class="navbar-toggler navbar-toggler-right custom-nav-button" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"><i class="fa fa-bars fa-lg color-custom" aria-hidden="true"></i></span>
+  </button>
+  
+  <a class="navbar-brand" href="/"><img class = "logo-nav" src = "/img/nephtc_logo.png"</img></a>
+  
+  <div class = "collapse navbar-collapse nav-collapse-custom" id="navbarNav">
+    
+    <ul class = "navbar-nav nav-flex-container">
+      <li class = "nav-item nav-spacer-large">
+        <a class = "nav-link custom-nav-font" href ="/">Home</a>
+      </li>
+      <li class = "nav-item nav-spacer-large">
+        <a class = "nav-link custom-nav-font" href="/about">About</a>
+      </li>
+      {{#if user}}
+          {{#if user.access}}
+            <li class = "nav-item nav-spacer-large">
+              <a class = "nav-link custom-nav-font" href="/reports/index">Reports</a>
+            </li>
+          {{/if}}
+          {{#if user.admin}}
+            <li class = "nav-item nav-spacer-large">
+              <a class = "nav-link custom-nav-font" href="/users/verify">Verify Users</a>
+            </li>
+          {{/if}}
+        <li class = "nav-item nav-spacer-large">
+          <a class = "nav-link custom-nav-font" href="/users/logout">Logout</a>
+        </li>
+      {{else}}
+        <li class = "nav-item nav-spacer-large">
+          <a class = "nav-link custom-nav-font" href="/users/login">Login</a>
+        </li>
+        <li class = "nav-item nav-spacer-large">
+          <a class = "nav-link custom-nav-font" href="/users/register">Register</a>
+        </li>
+      {{/if}}
+    </ul>
+  
+
+  </div>
+
+
+</div>
+</nav> 

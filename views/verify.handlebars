@@ -1,0 +1,80 @@
+<div class = "verification-page-block">
+  <h2 class = "verification-header">User Verification and Permissions</h2>
+  {{#if users}}
+  <form id = "user-permissions-approval" method = "post" action = "/users/verify">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Has Report Access</th>
+          <th>Has Admin Privilages</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each users}}
+          <tr class = "user-permissions">
+            <td>{{firstname}} {{lastname}}</td>
+            <td>{{email}}</td>
+            {{#if access}}
+              <td><input type = "checkbox" class = "access permissions-checkbox checked" name = "access-{{id}}" checked></td>
+            {{else}}
+              <td><input type = "checkbox" class = "access permissions-checkbox" name = "access-{{id}}"></td>
+            {{/if}}
+
+            {{#if admin}}
+              <td><input type = "checkbox" class = "admin permissions-checkbox checked" name = "admin-{{id}}" checked></td>
+            {{else}}
+              <td><input type = "checkbox" class = "admin permissions-checkbox" name = "admin-{{id}}"></td>
+            {{/if}}
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+    <button id = "permissions-submit" type = "submit" class = "btn btn-success ">Save Permissions</button>
+  </form>
+  {{else}}
+    <h2>Nothing to see here!</h2>
+  {{/if}}
+</div>
+
+
+<script type ="text/javascript">
+  var form = $("#user-permissions-approval");
+  form.submit(function(e) {
+    e.preventDefault();
+    var data = {};
+    var usersList = form.find('.user-permissions');
+
+    for (var i = 0; i < usersList.length; i ++){
+      var curUser = $(usersList[i])
+      var access = curUser.find('.access');
+      var admin = curUser.find('.admin');
+      if (access.hasClass('checked') && (access.prop('checked') == false)){
+        data[access.attr('name')] = 'off';
+      } else if (!access.hasClass('checked') && (access.prop('checked') == true)){
+        data[access.attr('name')] = 'on';
+      }
+      if (admin.hasClass('checked') && (admin.prop('checked') == false)){
+        data[admin.attr('name')] = 'off';
+      } else if (!admin.hasClass('checked') && (admin.prop('checked') == true)){
+        data[admin.attr('name')] = 'on';
+      }
+    }
+
+    $.ajax({
+        url : "/users/verify",
+        type: "POST",
+        data: data,
+        error: function(){
+          
+        },
+        success: function(data){
+          console.log(data);
+        }
+    });
+
+  });
+
+
+</script>

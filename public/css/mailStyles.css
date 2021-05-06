@@ -1,0 +1,200 @@
+@media screen and (min-width: 0px) {
+  
+  p {
+    margin-left: 5px;
+  }
+
+  .mail-block-item {
+    background: #FAFAFA;
+    margin-bottom: 35px;
+  }
+
+  .mail-question-row {
+  }
+
+  .odd {
+    background: #e4e4e4;
+  }
+
+  .scene-block {
+    background: #d4d4d4;
+    font-weight: bold;
+    padding-top: 10px;
+  }
+
+  .mail-answer-item {
+    display: inline-block;
+    width: 30%;
+    vertical-align: top;
+  }
+
+  .mail-question-item {
+   display: inline-block;
+   vertical-align: top;
+   width: 27%;
+  }
+
+  .mail-answer-columns {
+    display: inline;
+    width: 72%;
+    margin-left: 5%;
+  }
+
+  .identifiers {
+    display: inline;
+    vertical-align: top;
+    line-height: 100%;
+  }
+
+  .mail-answer-block {
+    display: block;
+    padding-top: 5px;
+    
+  }
+
+  .mail-question-title {
+    font-weight: bold;
+  }
+
+  .mail-answer-title {
+    font-weight: bold;
+  }
+
+  .mail-answer-block > .mail-question-row {
+    border-bottom: 1px solid black;
+  }
+
+  .mail-heading {
+    margin-bottom: 35px;
+  }
+
+  .mail-report-footer {
+    margin-top: 25px;
+    text-align: center;
+    padding-bottom: 25px;
+  }
+
+  .incorrect {
+    color: red;
+  }
+
+  #mail-download-block {
+    background-color: #294f7d;
+    width: 250px;
+    border-radius: 5px;
+    color: white;
+    height: 50px;
+    margin-bottom: 25px;
+  }
+
+  #mail-download-block:hover {
+    background: #183e6d;
+  }
+
+  #mail-download-block:active {
+    background: #2f445d;
+  }
+
+  #mail-download-text {
+    text-align: center;
+    width: 100%;
+    padding-top: 7px;
+    font-size: 24px;
+    margin: 0;
+  }
+
+}
+
+@media screen and (min-width: 600px) {
+  .mail-answer-columns {
+    margin-left: 9%;
+  }
+
+}
+
+@media print {
+  
+  p {
+    margin-left: 5px;
+  }
+
+  .mail-block-item {
+    background: #FAFAFA;
+    margin-bottom: 35px;
+  }
+
+  .mail-question-row {
+  }
+
+  .odd {
+    background: #e4e4e4;
+  }
+
+  .scene-block {
+    background: #d4d4d4;
+    font-weight: bold;
+    padding-top: 10px;
+  }
+
+  .mail-answer-item {
+    display: inline-block;
+    width: 30%;
+    vertical-align: top;
+  }
+
+  .mail-question-item {
+   display: inline-block;
+   vertical-align: top;
+   width: 27%;
+  }
+
+  .mail-answer-columns {
+    display: inline;
+    width: 72%;
+    margin-left: 5%;
+  }
+
+  .mail-identifiers {
+    display: inline;
+    vertical-align: top;
+    line-height: 100%;
+  }
+
+  .mail-answer-block {
+    display: block;
+    padding-top: 5px;
+    
+  }
+
+  .mail-question-title {
+    font-weight: bold;
+  }
+
+  .mail-answer-title {
+    font-weight: bold;
+  }
+
+  .mail-answer-block > .mail-question-row {
+    border-bottom: 1px solid black;
+  }
+
+  .mail-heading {
+    margin-bottom: 35px;
+  }
+
+  .mail-report-footer {
+    margin-top: 25px;
+    text-align: center;
+    padding-bottom: 25px;
+  }
+
+  .incorrect {
+    color: red;
+  }
+
+  #mail-download-block {
+    display: none;
+  }
+
+}
+

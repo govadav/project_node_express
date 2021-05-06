@@ -1,0 +1,193 @@
+<h2 class = "report-title">Common Metrics Report</h2>
+
+<div class = "button-table-block">
+  <a class="btn btn-primary btn-md excel-table" href="/reports/viewreport/{{reportId}}">Continue Working</a>
+  <a class="btn btn-success btn-md excel-table" href="/reports/generate-excel/{{reportId}}">Download to Excel</a>
+</div>
+
+<div class = "table-block">
+  <table id = "common-metrics-table" class = "table table-striped">
+
+    <thead class = "thead">
+      <tr>
+        <th colspan = "4">Reporting Information</th>
+        <th colspan = "6">Course Information</th>
+        <th colspan = "11">Q1: Subject Matter Understanding Improved</th>
+        <th colspan = "11">Q2: Identified Actions to Apply Information</th>
+        <th colspan = "11">Q3: Information Was Presented Clearly</th>
+        <th colspan = "11">Q4: Overall Satisfaction</th>
+        <th colspan = "11">Q5: Learning Objectives Were Met</th>
+        <th colspan = "2">Common Metrics Data Collected?</th>
+      </tr>
+      <tr>
+        <th>Which LPS Organized Training?</th>
+        <th>Reporting Period</th>
+        <th>Contact Name</th>
+        <th>Date of Training (Live Only)</th>
+        <th>Course Title</th>
+        <th>Core Competency</th>
+        <th>Delivery Mode of Course</th>
+        <th>Duration of Course in Hours</th>
+        <th>Total Number Completing Course</th>
+        <th>Total Number Completing Evaluation</th>
+
+          {{!-- Q1 --}}
+          <th># Strongly Disagree</th>
+          <th>% Strongly Disagree</th>
+          <th># Disagree</th>
+          <th>% Disagree</th>
+          <th># Neutral</th>
+          <th>% Neutral</th>
+          <th># Agree</th>
+          <th>% Agree</th>
+          <th># Strongly Agree</th>
+          <th>% Strongly Agree</th>
+          <th># Of Responses</th>
+
+          {{!-- Q2 --}}
+          <th># Strongly Disagree</th>
+          <th>% Strongly Disagree</th>
+          <th># Disagree</th>
+          <th>% Disagree</th>
+          <th># Neutral</th>
+          <th>% Neutral</th>
+          <th># Agree</th>
+          <th>% Agree</th>
+          <th># Strongly Agree</th>
+          <th>% Strongly Agree</th>
+          <th># Of Responses</th>
+
+          {{!-- Q3 --}}
+          <th># Strongly Disagree</th>
+          <th>% Strongly Disagree</th>
+          <th># Disagree</th>
+          <th>% Disagree</th>
+          <th># Neutral</th>
+          <th>% Neutral</th>
+          <th># Agree</th>
+          <th>% Agree</th>
+          <th># Strongly Agree</th>
+          <th>% Strongly Agree</th>
+          <th># Of Responses</th>
+
+          {{!-- Q4 --}}
+          <th># Strongly Disagree</th>
+          <th>% Strongly Disagree</th>
+          <th># Disagree</th>
+          <th>% Disagree</th>
+          <th># Neutral</th>
+          <th>% Neutral</th>
+          <th># Agree</th>
+          <th>% Agree</th>
+          <th># Strongly Agree</th>
+          <th>% Strongly Agree</th>
+          <th># Of Responses</th>
+
+          {{!-- Q5 --}}
+          <th># Strongly Disagree</th>
+          <th>% Strongly Disagree</th>
+          <th># Disagree</th>
+          <th>% Disagree</th>
+          <th># Neutral</th>
+          <th>% Neutral</th>
+          <th># Agree</th>
+          <th>% Agree</th>
+          <th># Strongly Agree</th>
+          <th>% Strongly Agree</th>
+          <th># Of Responses</th>
+
+        <th>Common Metrics Data Collected?</th>
+        <th>If not, why not?</th>
+    </thead>
+    <tbody>
+      {{#each data}}
+      <tr>
+        <td>{{this.lps}}</td>
+        <td>{{this.reportingPeriodFrom }} - {{this.reportingPeriodTo}}</td>
+        <td>{{this.contractName}}</td>
+        <td>{{formatDate}}</td>
+        <td>{{this.courseName}}</td>
+        <td>{{this.primaryCompetency}}</td>
+        <td>{{this.deliveryMode}}</td>
+        <td>{{this.durationHours}}</td>
+        <td>{{this.numTrained}}</td>
+        <td>{{this.numRepsonses}}</td>
+        
+        {{!-- Q1 --}}
+        <td>{{this.subjectMatter.numStrongDis}}</td>
+        <td>{{this.subjectMatter.percentStrongDis}}</td>
+        <td>{{this.subjectMatter.numDis}}</td>
+        <td>{{this.subjectMatter.percentDis}}</td>
+        <td>{{this.subjectMatter.numNeutral}}</td>
+        <td>{{this.subjectMatter.percentNeutral}}</td>
+        <td>{{this.subjectMatter.numAgree}}</td>
+        <td>{{this.subjectMatter.percentAgree}}</td>
+        <td>{{this.subjectMatter.numStrongAgree}}</td>
+        <td>{{this.subjectMatter.percentStrongAgree}}</td>
+        <td>{{this.subjectMatter.numTotal}}</td>
+
+        {{!-- Q2 --}}
+        <td>{{this.actionsToApply.numStrongDis}}</td>
+        <td>{{this.actionsToApply.percentStrongDis}}</td>
+        <td>{{this.actionsToApply.numDis}}</td>
+        <td>{{this.actionsToApply.percentDis}}</td>
+        <td>{{this.actionsToApply.numNeutral}}</td>
+        <td>{{this.actionsToApply.percentNeutral}}</td>
+        <td>{{this.actionsToApply.numAgree}}</td>
+        <td>{{this.actionsToApply.percentAgree}}</td>
+        <td>{{this.actionsToApply.numStrongAgree}}</td>
+        <td>{{this.actionsToApply.percentStrongAgree}}</td>
+        <td>{{this.actionsToApply.numTotal}}</td>
+
+        {{!-- Q3 --}}
+        <td>{{this.clearlyPresented.numStrongDis}}</td>
+        <td>{{this.clearlyPresented.percentStrongDis}}</td>
+        <td>{{this.clearlyPresented.numDis}}</td>
+        <td>{{this.clearlyPresented.percentDis}}</td>
+        <td>{{this.clearlyPresented.numNeutral}}</td>
+        <td>{{this.clearlyPresented.percentNeutral}}</td>
+        <td>{{this.clearlyPresented.numAgree}}</td>
+        <td>{{this.clearlyPresented.percentAgree}}</td>
+        <td>{{this.clearlyPresented.numStrongAgree}}</td>
+        <td>{{this.clearlyPresented.percentStrongAgree}}</td>
+        <td>{{this.clearlyPresented.numTotal}}</td>
+
+        {{!-- Q4 --}}
+        <td>{{this.overallSatisfaction.numStrongDis}}</td>
+        <td>{{this.overallSatisfaction.percentStrongDis}}</td>
+        <td>{{this.overallSatisfaction.numDis}}</td>
+        <td>{{this.overallSatisfaction.percentDis}}</td>
+        <td>{{this.overallSatisfaction.numNeutral}}</td>
+        <td>{{this.overallSatisfaction.percentNeutral}}</td>
+        <td>{{this.overallSatisfaction.numAgree}}</td>
+        <td>{{this.overallSatisfaction.percentAgree}}</td>
+        <td>{{this.overallSatisfaction.numStrongAgree}}</td>
+        <td>{{this.overallSatisfaction.percentStrongAgree}}</td>
+        <td>{{this.overallSatisfaction.numTotal}}</td>
+
+        {{!-- Q5 --}}
+        <td>{{this.learningObejectivesMet.numStrongDis}}</td>
+        <td>{{this.learningObejectivesMet.percentStrongDis}}</td>
+        <td>{{this.learningObejectivesMet.numDis}}</td>
+        <td>{{this.learningObejectivesMet.percentDis}}</td>
+        <td>{{this.learningObejectivesMet.numNeutral}}</td>
+        <td>{{this.learningObejectivesMet.percentNeutral}}</td>
+        <td>{{this.learningObejectivesMet.numAgree}}</td>
+        <td>{{this.learningObejectivesMet.percentAgree}}</td>
+        <td>{{this.learningObejectivesMet.numStrongAgree}}</td>
+        <td>{{this.learningObejectivesMet.percentStrongAgree}}</td>
+        <td>{{this.learningObejectivesMet.numTotal}}</td>
+
+        <td>True</td>
+        <td>N/A</td>
+      </tr>
+      {{/each}}
+    </tbody>
+
+  </table>
+</div>
+
+<div class = "excel-table-buttons">
+  <a class="btn btn-success btn-lg excel-table" href="/reports/generate-excel/{{reportId}}">Download to Excel</a>
+  <a class="btn btn-primary btn-lg excel-table" href="/reports/viewreport/{{reportId}}">Continue Working</a>
+</div>

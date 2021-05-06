@@ -1,0 +1,507 @@
+button:focus, input[type="button"]:focus {
+    outline: none;
+}
+
+.page-backing {
+  background-color: #F5F5F5;
+}
+
+.container {
+  background-color: white;
+  height: 100%;
+  min-height: 80vh;
+}
+
+.page-content {
+  padding-top: 25px;
+}
+
+.navbar-custom {
+  width: 100%;
+  background-color: white;
+  border-bottom: 1px solid #b7b7b7;
+  padding: 0;
+}
+
+.wide-nav-wrapper {
+  max-width: 1400px;
+  width: 95%;
+  display: flex;
+  justify-content: space-between;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.logo-nav {
+  width: 100%;
+  max-width: 250px;
+}
+
+/* TO DO: Write media clauses at smaller screen sizes so that the menu icon doesn't colide with the logo */
+
+
+.custom-nav-button {
+  top: 2rem;
+}
+
+.nav-collapse-custom {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.custom-nav-button:active {
+  background-color: grey;
+}
+.nav-spacer-large {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  flex-basis: 100%;
+}
+
+.custom-nav-font {
+  font-size: 20px;
+  font-family: Montserrat, sans-serif;
+  color: #194179;
+  padding: 0 !important;
+  margin-left: 10px;
+}
+
+.custom-nav-font:hover {
+  color: #8e9db3 !important;
+}
+
+.color-custom {
+  color: #194179;
+}
+
+.nav-flex-container {
+  width: 75%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.footer-custom {
+  width: 100%;
+  background-color: #194179;
+}
+
+.footer-wrapper {
+  width: 95%;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.footer-link-block {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding-top: 15px;
+
+}
+
+.footer-link {
+  color: white;
+  font-size: 20px;
+  font-family: Montserrat, sans-serif;
+  padding: 0 !important;
+  text-decoration: none;
+  flex-basis: 100%;
+  text-align: center;
+}
+
+.footer-link:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+.footer-link:active {
+  outline: none;
+}
+
+.footer-copyright {
+  display: flex;
+  flex-direction: column;
+  margin-top: 25px;
+  padding-bottom: 20px;
+}
+
+.copyright-info, .support-info {
+  color: white;
+  font-size: 14px;
+  font-family: Montserrat, sans-serif;
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.business-header {
+  height: 50vh;
+  min-height: 300px;
+  background: url('http://placehold.it/1920x400') center center no-repeat scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+
+.card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-text, .card-title {
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.card-text {
+  margin-bottom: 10px !important;
+}
+
+.card-title {
+  margin-top: 10px !important;
+}
+
+.top-frontpage-block {
+
+}
+
+.home-hero-left {
+  border-right: 1px solid #b7b7b7;
+}
+
+.user-login-home, .user-logged-in {
+}
+
+.user-logged-in {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+
+.card-img-top-custom {
+  width: 100%;
+  height: 250px;
+}
+
+
+.top-frontpage-block {
+  margin-bottom: 50px;
+}
+
+.bottom-frontpage-block {
+  display: flex;
+  justify-content: space-around;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-around;
+}
+
+/* REPORTS CSS*/
+
+.report-selection-block, .saved-reports-block {
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.report-selection-block {
+  
+  border-bottom: 1px solid #b7b7b7;
+  padding-bottom: 25px;
+}
+
+.report-selection:active {
+  outline: none !important;
+}
+
+.date-fields {
+  margin-top: 35px;
+  margin-bottom: 25px;
+}
+
+.date-field-single-block {
+  width: 250px;
+  margin-bottom: 20px;
+  margin-right: 15px;
+  display: inline-block;
+}
+
+.date-field-single-label {
+  margin: 0;
+  padding: 0;
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.prebuilt-date-range {
+  margin: 0;
+  padding: 0;
+  margin-bottom: 15px;
+}
+
+.saved-reports-block {
+  margin-top: 25px;
+  margin-bottom: 50px;
+}
+
+
+/* ABOUT AND DOCUMENTATION */
+
+.about-page-block {
+  width: 95%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* USER REGISTRATION, LOGIN, AND VERIFICATION */
+
+.user-login-container {
+  min-width: 275px;
+  width 50%;
+  max-width: 750px;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 35px;
+}
+
+.login-title {
+  padding-bottom: 5px;
+  border-bottom: 1px solid #b7b7b7;
+}
+
+.verification-page-block {
+  width: 95%;
+  margin-right: auto;
+  margin-left: auto;
+  padding-bottom: 25px;
+}
+
+.verification-header {
+  margin-top: 25px;
+  margin-bottom: 15px;
+}
+
+#permissions-submit {
+  margin-bottom: 25px;
+}
+
+.permissions-checkbox {
+  text-align: center;
+}
+
+
+/* REPORT PAGES */
+
+#grade-table, #audit-table {
+  overflow-x: scroll;
+  margin-bottom: 25px;
+}
+
+.feedback-block {
+  overflow: scroll;
+  margin-bottom: 10px;
+}
+
+.feedback-course-title {
+  margin-top: 25px;
+  margin-bottom: 10px;
+}
+
+.ehb-block {
+  overflow: scroll;
+  margin-bottom: 10px;
+}
+
+
+/* SUPPORT SUMBIT, TICKETS, VIEW, AND UPDATE */
+
+.support-header {
+
+}
+
+.support-subheading {
+  width: 75%;
+  font-size: 14px;
+  border-top: 1px solid #b7b7b7;
+  padding-top: 25px;
+}
+
+.support-form-block {
+  margin-bottom: 35px;
+}
+
+.support-input-block {
+  width: 100%;
+  max-width: 751px;
+  margin-bottom: 35px;
+}
+
+.support-label, .support-subject, .support-body {
+  display: inline-block;
+}
+
+.support-label {
+  width: 75px;
+  margin-right: 25px;
+  text-align: right;
+  font-weight: 700;
+  vertical-align: top;
+}
+
+.support-subject, .support-body {
+  max-width: 645px;
+  width: 100%;
+}
+
+.support-body {
+  height: 300px;
+}
+
+.support-submit {
+  display: block;
+  margin-left: auto;
+  width: 150px;
+  margin-top: 25px;
+}
+
+.support-button {
+  margin-top: 30px;
+  margin-right: 25px;
+}
+
+
+/* 404 AND 500 PAGE */
+
+.center {
+  text-align: center; 
+  margin-left: auto; 
+  margin-right: auto; 
+  margin-bottom: auto; 
+  margin-top: auto;
+}
+
+.hero-unit {
+  width: 100%;
+  max-width: 750px;
+}
+
+
+/* EHB AND COMMON METRICS REPORT PAGES */
+
+.ehb-course-select-line, .cm-course-select-line, .pp-course-select-line {
+  padding-left: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  max-width: 750px;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ehb-course-select-link, .cm-course-select-link, .pp-course-select-link {
+  padding-left: 10px;
+  overflow-wrap: break-word;
+  display: inline-block;
+  width: 90%;
+  margin-bottom: 3px;
+  margin-top: 2px;
+  vertical-align: middle;
+  color: #194179 !important;
+}
+
+.fa-times:before {
+  color: red;
+  padding-right: 5px;
+}
+
+.fa-check:before {
+  color: green;
+  padding-right: 1px;
+}
+
+.ehb-incomplete, .cm-incomplete, .pp-incomplete {
+  background-color: #ffb3b3;
+}
+
+.ehb-complete, .cm-complete, .pp-complete {
+  background-color: #9dff80;
+}
+
+.excel-table-buttons {
+  display: flex;
+  justify-content: space-around;
+  width: 450px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 35px;
+}
+
+.ehb-text-field {
+
+}
+
+.ehb-text-label {
+
+}
+
+.ehb-check-box {
+  width: 20%;
+  align-self: center;
+}
+
+.ehb-check-label {
+  width: 75%;
+}
+
+.ehb-date-field {
+
+}
+
+.ehb-text-input-block {
+  width: 32%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.ehb-form-top-control{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+
+.ehb-check-box-block {
+  width: 32%;
+  display: flex;
+  justify-content: center;
+  align-self: flex-end;
+}
+
+// TABLES
+
+#common-metrics-table, #ehb-table {
+  overflow-x: scroll;
+  max-width: 95%;
+}
+
+.table-block {
+  overflow-x: scroll;
+  margin-bottom: 50px;
+}
+
+.button-table-block {
+  margin-bottom: 15px;
+}

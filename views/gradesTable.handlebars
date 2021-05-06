@@ -1,0 +1,94 @@
+
+<h2 class = "report-title">Pre and Post test grades report</h2>
+
+<div class = "button-table-block">
+  <a class="btn btn-primary btn-md excel-table" href="/reports/viewreport/{{reportId}}">Continue Working</a>
+  <a class="btn btn-success btn-md excel-table" href="/reports/generate-excel/{{reportId}}">Download to Excel</a>
+</div>
+
+<div class = "table-block">
+  <table id = "pp-table" class = "table table-striped">
+
+    <thead class = "thead">
+      <tr>
+        <th colspan = "4">Reporting Information</th>
+        <th colspan = "6">Course Information</th>
+        <th colspan = "7">Current Pre/Post Test</th>
+        <th colspan = "16">Old Pre/Post Test</th>
+      </tr>
+      <tr>
+        <th>LPS/Partner</th>
+        <th>Reporting Period</th>
+        <th>Date of Training (Live Only)</th>
+        <th>Contact Title</th>
+        <th>Course Name</th>
+        <th># of Trainees Completing Course</th>
+        <th># of Trainees Completing Pre-Test</th>
+        <th># of Pre-Test Questions</th>
+        <th>Pre-Test Highest Score</th>
+        <th>Pre-Test Lowest Score</th>
+        <th>Pre-Test Avg Score</th>
+        <th># of Trainees Completing Post-Test</th>
+        <th># of Post-Test Questions</th>
+        <th>Post-Test Highest Score</th>
+        <th>Post-Test Lowest Score</th>
+        <th>Post-Test Avg Score</th>
+        <th># of Trainees Completing Old Pre-Test</th>
+        <th># of Old Pre-Test Questions</th>
+        <th>Old Pre-Test Highest Score</th>
+        <th>Old Pre-Test Lowest Score</th>
+        <th>Old Pre-Test Avg Score</th>
+        <th># of Trainees Completing Old Post-Test</th>
+        <th># of Old Post-Test Questions</th>
+        <th>Old Post-Test Highest Score</th>
+        <th>Old Post-Test Lowest Score</th>
+        <th>Old Post-Test Avg Score</th>
+        <th>Number Using for Certification</th>
+        <th>Reason Pre/Post Not Collected</th>
+       
+      </tr>
+    </thead>
+    <tbody>
+      {{#each data}}
+      <tr>
+        <td>{{this.lps}}</td>
+        <td>{{this.reportingPeriodFrom}} - {{this.reportingPeriodTo}}</td>
+        <td>{{this.dateOfTraining}}</td>
+        <td>{{this.contactName}}</td>
+        <td>{{this.courseName}}</td>
+        <td>{{this.numTrainedCourse}}</td>
+        <td>{{this.numCompletedPretest}}</td>
+        <td>{{this.numPretestQue}}</td>
+        <td>{{this.PretestHighScore}}</td>
+        <td>{{this.PretestLowScore}}</td>
+        <td>{{this.PretestAvgScore}}</td>
+        <td>{{this.numCompletedPosttest}}</td>
+        <td>{{this.numPosttestQue}}</td>
+        <td>{{this.PosttestHighScore}}</td>
+        <td>{{this.PosttestLowScore}}</td>
+        <td>{{this.PosttestAvgScore}}</td>
+        <td>{{this.numCompletedoldPretest}}</td>
+        <td>{{this.numoldPretestQue}}</td>
+        <td>{{this.OldPretestHighScore}}</td>
+        <td>{{this.OldPretestLowScore}}</td>
+        <td>{{this.OldPretestAvgScore}}</td>
+        <td>{{this.numCompletedoldPosttest}}</td>
+        <td>{{this.numoldPosttestQue}}</td>
+        <td>{{this.OldPosttestHighScore}}</td>
+        <td>{{this.OldPosttestLowScore}}</td>
+        <td>{{this.OldPosttestAvgScore}}</td>
+        <td>{{this.numCertification}}</td>
+        <td>{{this.Reason}}</td>
+        
+      </tr>
+      {{/each}}
+    </tbody>
+
+  </table>
+</div>
+
+<div class = "excel-table-buttons">
+  <a class="btn btn-success btn-lg excel-table" href="/reports/generate-excel/{{reportId}}">Download to Excel</a>
+  <a class="btn btn-primary btn-lg excel-table" href="/reports/viewreport/{{reportId}}">Continue Working</a>
+</div>
+

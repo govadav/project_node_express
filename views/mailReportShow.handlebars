@@ -1,0 +1,232 @@
+<div class = 'mail-container'>
+
+  <div class = 'mail-heading'>
+    <h2>Final Report</h2>
+    <h5 id = "emailField">Email: {{email}}</h5>
+  </div>
+
+  <div id = "mail-download-block">
+    <p id = "mail-download-text">Download PDF</p>
+  </div>
+
+{{# each answers as |value key|}}
+
+  {{#eq value "Error"}}
+    <div class = "mail-block-item">
+      <div class = "scene-block">
+        <p class = "identifiers incorrect"> ERROR </p>
+      </div>
+    </div>
+  {{/eq}}
+
+  <div class = "mail-block-item">
+      <div class = "scene-block">
+            <p class = "identifiers">{{value.location.id}} -- {{value.violStructID.id}}</p>
+      </div>
+
+    <div class = "mail-answer-block">
+        <div class = "mail-question-row">
+          <p class = "mail-question-item mail-question-title">Question:</p>
+          <div class = "mail-answer-columns">
+            <p class = "mail-answer-title mail-answer-item mail-usr-col">You Answered:</p>
+            <p class = "mail-answer-title mail-answer-item mail-key-col">We Said:</p>
+          </div>
+        </div>
+    </div>
+
+    {{# each value as |v k|}}
+
+        {{#eq k "violYN"}}
+        <div class = "mail-question-row odd">
+          <p class = "mail-question-item">Were there any violations?</p>
+
+          <div class = "mail-answer-columns">
+
+            {{#if v.correct}}
+              <p class = "mail-answer-item mail-usr-col">{{v.usrAns}}</p>
+            {{else}}
+              <p class = "mail-answer-item mail-usr-col incorrect">{{v.usrAns}}</p>
+            {{/if}}
+
+            <p class = "mail-answer-item mail-key-col">{{v.ans}}</p>
+          </div>
+
+        </div>
+        {{/eq}}
+
+        {{#eq k "codeId"}}
+        <div class = "mail-question-row">
+          <p class = "mail-question-item">Were there any citable codes?</p>
+          <div class = "mail-answer-columns">
+
+            {{#if v.correct}}
+              <p class = "mail-answer-item mail-usr-col">{{v.usrAns}}</p>
+            {{else}}
+              <p class = "mail-answer-item mail-usr-col incorrect">{{v.usrAns}}</p>
+            {{/if}}
+
+            <p class = "mail-answer-item mail-key-col">{{v.ans}}</p>
+          </div>
+        </div>
+        {{/eq}}
+
+        {{#eq k "violDescUser"}}
+        <div class = "mail-question-row odd">
+          <p class = "mail-question-item">Describe the violation: (Answers will vary)</p>
+          <div class = "mail-answer-columns">
+            {{#eq v.correct "Variable"}}
+              <p class = "mail-answer-item mail-usr-col">{{v.usrAns}}</p>
+            {{else}}
+              <p class = "mail-answer-item mail-usr-col incorrect">{{v.usrAns}}</p>
+            {{/eq}}
+            <p class = "mail-answer-item mail-key-col">{{v.ans}}</p>
+          </div>
+        </div>
+        {{/eq}}
+
+        {{#eq k "endanger"}}
+        <div class = "mail-question-row">
+          <p class = "mail-question-item">Is there a possibility of endangerment?</p>
+          <div class = "mail-answer-columns">
+
+            {{#if v.correct}}
+              <p class = "mail-answer-item mail-usr-col">{{v.usrAns}}</p>
+            {{else}}
+              <p class = "mail-answer-item mail-usr-col incorrect">{{v.usrAns}}</p>
+            {{/if}}
+
+            <p class = "mail-answer-item mail-key-col">{{v.ans}}</p>
+          </div>
+        </div>
+        {{/eq}}
+
+        {{#eq k "responsibleParty"}}
+        <div class = "mail-question-row odd">
+          <p class = "mail-question-item">Who would be the responsible party in this case?</p>
+          <div class = "mail-answer-columns">
+
+            {{#if v.correct}}
+              <p class = "mail-answer-item mail-usr-col">{{v.usrAns}}</p>
+            {{else}}
+              <p class = "mail-answer-item mail-usr-col incorrect">{{v.usrAns}}</p>
+            {{/if}}
+
+            <p class = "mail-answer-item mail-key-col">{{v.ans}}</p>
+          </div>
+        </div>
+        {{/eq}}
+
+        {{#eq k "referral"}}
+        <div class = "mail-question-row">
+          <p class = "mail-question-item">Where should this be referred?</p>
+          <div class = "mail-answer-columns">
+
+            {{#if v.correct}}
+              <p class = "mail-answer-item mail-usr-col">{{v.usrAns}}</p>
+            {{else}}
+              <p class = "mail-answer-item mail-usr-col incorrect">{{v.usrAns}}</p>
+            {{/if}}
+
+            <p class = "mail-answer-item mail-key-col">{{v.ans}}</p>
+          </div>
+        </div>
+        {{/eq}}
+    {{/each}}
+
+  </div>
+
+{{/each}}
+
+  <div class = "mail-report-footer">
+    <h5>Questions? Comments? Contact Us at support@nephtc.org</h5>
+    <h6>Copyright © 2018 New England Public Health Training Center</h6>
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/jspdf/1.3.4/jspdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/2.3.2/jspdf.plugin.autotable.min.js"></script>
+
+<script type="text/javascript">
+
+  function getQuestionObj (block) {
+    var usrData = [];
+    for (var j = 2; j < block.length; j++) { // start at 2; first and second child already captured
+      var row = block[j].children;
+      var question = row[0].innerText;
+      var usrAns = row[1].children[0].innerText;
+      var ans = row[1].children[1].innerText;
+      var data = {"question": question, "usrAns": usrAns, "ans": ans};
+      usrData.push(data);
+    }
+    return usrData;
+  }
+
+  $(document).ready(function(){
+    $('nav').css({"display": "none"});
+    $('.footer-custom').css({"display": "none"});
+    $("#mail-download-block").on('click', function(){
+      var usrEmail = $("#emailField")[0].innerText; 
+
+      var doc = new jsPDF ('p', "pt"); // set up doc object and inital header
+      doc.text(7, 20, "Final Report");
+      doc.text(7, 40,  usrEmail);
+
+      var blockitems = $('.mail-block-item');
+      for (var i = 0; i < blockitems.length; i ++) {
+        var locationTitle = blockitems[i].children[0].children[0].innerText; // Violation Location
+        var columns = [
+          {title: "Question:", dataKey: "question"}, // table columns
+          {title: "You Said:", dataKey: "usrAns"}, 
+          {title: "We Said:", dataKey: "ans"}
+        ];
+        var rows = getQuestionObj(blockitems[i].children); // table data
+        
+        if (i < 1 ) { // first table is set to be below the header on the first page
+          doc.text(7, 80, locationTitle);
+          doc.autoTable(columns, rows, {
+            startY: 85,
+            margin: {horizontal: 7},
+            styles: {overflow: 'linebreak', columnWidth: 'auto'},
+            columnStyles: {
+              question: {columnWidth: 150},
+              usrAns: {columnWidth: 215},
+              ans: {columnWidth: 215}
+            },
+            headerStyles: {
+              fillColor: [140, 140, 140],
+              fontSize: 14
+            }
+          });
+
+        } else {
+          var pageHeight = 792;
+          var currentLine = doc.autoTable.previous.finalY + 30;
+
+          if ((pageHeight - currentLine) < 200) { // check if near end of page; break and start on new page
+            doc.addPage();
+            var currentLine = 25;
+          }
+
+          doc.text(7, currentLine, locationTitle);
+          doc.autoTable(columns, rows, {
+            startY: currentLine + 5,
+            margin: {horizontal: 7},
+            styles: {overflow: 'linebreak', columnWidth: 'auto'},
+            columnStyles: {
+              question: {columnWidth: 150},
+              usrAns: {columnWidth: 215},
+              ans: {columnWidth: 215}
+            },
+            headerStyles: {
+              fillColor: [140, 140, 140],
+              fontSize: 14
+            }
+          });
+        }
+      }
+      doc.output('save', 'final_report.pdf');
+    });
+  });
+
+</script>

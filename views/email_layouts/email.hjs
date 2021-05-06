@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <div>
+  <p>To: {{email}}, <br/><br />
+    Thank you for participating in the virtual housing inspection of the MA PHIT Housing course.  <a href = {{usrUrl}}>Click here</a> to review your results.<br/>
+    Once you have your Final Report you must go back to the course page and:<br />
+      <ul>
+        <li>Upload a copy of your Final Report</li>
+        <li>Complete the virtual housing inspection evaluation</li>
+        <li>Schedule your field inspections (bring a copy of your Final Report with you)</li>
+      </ul>
+      <br />
+    If you have any questions, please contact Seth Eckhouse at seckhous@bu.edu. <br /><br />
+
+    MA PHIT Housing Team hosted at BU School of Public Health <br />
+    Local Public Health Institute of Massachusetts <br />
+  </p>
+  <h4 style = "font-family:arial; color:#194179">New England Public Health Training Center </h4>
+</div>
+</body>
+</html>

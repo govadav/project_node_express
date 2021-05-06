@@ -1,0 +1,28 @@
+{{#if errors}}
+  {{#each errors}}
+      <div class = "alert alert-danger">
+        {{msg}}
+      </div> 
+  {{/each}}
+{{/if}}
+
+<div class="about-page-block">
+  <h2 class = "support-header">Support</h2>
+
+  <p class="support-subheading">If you have questions, concerns, or have found an issue with the site please fill out the form below.  In the subject line create a simple three word summary of the issue, and then in the body please outline in detail your questions or site issues. <br><br>Once you submit, an admin will be notified and attempt to resolve your issue as soon as possible.</p>
+
+  <div class = "support-form-block">
+    <form class = "support-form" method = "POST" action = "/support/">
+      <div class = "support-input-block">
+        <p class = "support-label">Subject:</p>
+        <input type = "text" class = "support-subject" name = "subject" placeholder = "Add a three to four word summary of the issue here">
+      </div>
+      <div class = "support-input-block">
+        <p class = "support-label">Body:</p>
+        <textarea class = "support-body" wrap = "soft" name = "body" placeholder = "List your questions and/or describe the issue(s) including: what you trying to do, what happened as a result of your activity, and the error messages (if any)."></textarea>
+        <br>
+        <button type = "submit" class = "btn btn-success support-submit">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>

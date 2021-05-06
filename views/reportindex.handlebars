@@ -1,0 +1,105 @@
+<div class = "reports-splash">
+  <div class = "report-selection-block">
+    <form class = "prebuilt-moodle-reports" method = "post" action = "/reports/report">
+      <h5 class = "prebuilt-report-select">Step 1: Select a report type</h5>
+     
+      <div class="btn-group" data-toggle="buttons">
+
+        <label class="btn btn-primary">
+          <input type="radio" class = "report-selection" name="reporttype" id="audit" autocomplete="off" value="audit" required>Course Audit Enrollment
+        </label>
+
+        <label class="btn btn-primary">
+          <input type="radio" class = "report-selection" name="reporttype" id="commonMetrics" autocomplete="off" value="commonMetrics" required>Common Metrics
+        </label>
+
+        <label class="btn btn-primary">
+          <input type="radio" class = "report-selection" name="reporttype" id="grades" autocomplete="off" value="grades" required>Course Pre and Post-Test Grades
+        </label>
+
+        <label class="btn btn-primary">
+          <input type="radio" class = "report-selection" name="reporttype" id="ehb" autocomplete="off" value="ehb" required>EHB
+        </label>
+
+      </div>
+
+      <br/>
+      <br/> 
+      
+      <div class = "name-field">
+        <h5 class = "prebuilt-report-name">Step 2: Enter a unique name for this report</h5>
+        <div class = "name-field-block">
+          <input class = "form-control name-report" type = "text" name = "reportName" required>
+        </div>
+        {{!-- <h5 class = "prebuilt-report-sharing">Step 3: Select the sharing permissions</h5>
+        <div class="btn-group" data-toggle="buttons">
+          <label class="btn btn-primary">
+            <input type="radio" class = "report-selection" name="sharingOptions" id="sharingPrivate" autocomplete="off" value="private" required>Private
+          </label>
+
+          <label class="btn btn-primary">
+            <input type="radio" class = "report-selection" name="sharingOptions" id="sharingLMS" autocomplete="off" value="lms" required>Within LMS
+          </label>
+
+          <label class="btn btn-primary">
+            <input type="radio" class = "report-selection" name="sharingOptions" id="sharingGlobal" autocomplete="off" value="global" required>Global
+          </label>
+        </div> --}}
+      </div>
+
+      <div class = "date-fields">
+        <h5 class = "prebuilt-date-range">Step 3: Select the desired date range</h5>
+        <div class = "date-field-single-block">
+          <p class = "date-field-single-label">From</p>
+          <input class = "form-control report-dates" type = "date" name = "fromdate" required>
+        </div>
+
+        <div class = "date-field-single-block">
+          <p class = "date-field-single-label">To</p>
+          <input class = "form-control report-dates" type = "date" name = "todate" required>
+        </div>
+      </div>
+      
+      <button type = "submit" class = "btn btn-success">Get Report</button>
+    </form>
+
+  </div>
+
+  <div class = "saved-reports-block">
+    <h5>Continue working on or view the reports below</h5>
+    <div class = "table-block">
+      <table id = "reports-index-table" class = "table table-striped">
+        <thead class = "thead">
+          <tr>
+            <th>Report Name</th>
+            <th>Report Type</th>
+            <th>Owner</th>
+            <th>Report Created</th>
+            <th>Edit</th>
+            {{#eq admin true}}
+              <th>Delete</th>
+            {{/eq}}
+          </tr>          
+        </thead>
+        <tbody>
+          {{#each reports}}
+          <tr>
+              <td>{{this.reportName}}</td>
+              <td>{{this.reportType}}</td>
+              <td>{{this.ownerFirst}}</td>
+              <td>{{this.dateCreated}}</td>
+              <td>
+                  <a href = "/reports/viewreport/{{this.id}}" class = "btn btn-primary edit-report-button">Edit Report</a>
+              </td>
+              {{#eq ../admin true}}
+                <td>
+                    <a href = "/reports/deletereport/{{this.id}}" class = "btn btn-danger delete-report-button">Delete Report</a>
+                </td>
+              {{/eq}}
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

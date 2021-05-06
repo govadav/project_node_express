@@ -1,0 +1,446 @@
+<h2>EHB Report: {{fromDate}} -- {{toDate}}</h2>
+<hr/>
+
+{{#each courses}}
+  {{#eq this.courseDataCompleted false}}
+    <div class = "ehb-course-select-line ehb-incomplete">
+      <i id = "formCheck-{{this.id}}" class="ebh-fa-times fa fa-times" aria-hidden="true"></i>
+    {{else}}
+    <div class = "ehb-course-select-line ehb-complete">
+      <i id = "formCheck-{{this.id}}" class="ehb-fa-check fa fa-check" aria-hidden="true"></i>
+    {{/eq}}
+    <a class = "course-link ehb-course-select-link" data-toggle = "modal" data-target = "#form-{{this.courseId}}" data-internalid = "{{this.id}}" >{{this.courseName}}</a>
+  </div>
+
+  <div class="modal fade" id="form-{{this.courseId}}" tabindex="-1" role="dialog" aria-labelledby="ehbCourseName" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content modal-lg">
+        <div class="modal-header modal-lg">
+          <h5 class="modal-title" id="ehbCourseName">{{this.courseName}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body modal-lg" id = "modal-{{this.id}}">
+          <form id = "form-body-{{this.id}}" class = "prebuilt-moodle-reports" method = "post" action = "/reports/ehb/{{this.id}}">
+            <div class = "ehb-form-top-control">
+              <div class = "form-group ehb-text-input-block">
+                <label class = "ehb-text-label" for = "ehblps">Reporting LPS</label>
+                <input class = "ehb-text-field form-control" type = "text" name = "ehblps" id = "ehblps-{{this.id}}" placeholder = "ex. LPHI" required>
+              </div>
+
+              <div class = "form-group ehb-text-input-block">
+                <label class = "ehb-text-label" for = "ehbcontactname">Contact Name</label>
+                <input class = "ehb-text-field form-control" type = "text" name = "ehbcontactname" id = "ehbcontactname-{{this.id}}">
+              </div>
+
+              <div class = "form-group ehb-text-input-block">
+                <label class = "ehb-text-label" for = "ehbdurhours">Course Duration Hours</label>
+                <input class = "ehb-text-field form-control" type = "text" name = "ehbdurhours" id = "ehbdurhours-{{this.id}}">
+              </div>
+
+              <div class = "form-group ehb-text-input-block">
+                <label class = "ehb-text-label" for = "ehbnumtimesoffered">Number of Times Training Was Offered</label>
+                <input class = "ehb-text-field form-control" type = "text" name = "ehbnumtimesoffered" id = "ehbnumtimesoffered-{{this.id}}">
+              </div>
+
+              <div class = "form-group ehb-text-input-block">
+                <label class = "ehb-text-label" for = "ehbdateoftraining">Date of Training</label>
+                <input class = "ehb-date-field form-control" type = "date" name = "ehbdateoftraining" id = "ehbdateoftraining-{{this.id}}">
+              </div>
+
+              <div class = "form-group ehb-check-box-block">
+                <label class = "ehb-check-label" for = "ehbappcontedu">Course Approved for Continuing Education</label>
+                <input class = "ehb-check-box form-control" type = "checkbox" name = "ehbappcontedu" id = "ehbappcontedu-{{this.id}}">
+              </div>
+            </div>
+
+            <div class = "form-group">
+              <label for = "ehbdeliverymode">Mode of Delivery</label>
+              <select class = "ehb-select-field form-control" name = "ehbdeliverymode" id = "ehbdeliverymode-{{this.id}}">
+                <option value="" disabled="disabled" selected="selected">Select a delivery mode</option>
+                <option value = "Archived/Self-paced Distance Learning">Archived/Self-paced Distance Learning</option>
+                <option value = "Classroom-based">Classroom-based</option>
+                <option value = "Hybrid">Hybrid</option>
+                <option value = "Real-time/Live Distance Learning">Real-time/Live Distance Learning</option>
+              </select>
+            </div>
+
+            <div class = "form-group">
+              <label for = "ehbpartnership1">Partnerships (1)</label>
+              <select class = "ehb-select-field form-control" name = "ehbpartnership1" id = "ehbpartnership1-{{this.id}}">
+                <option value="" disabled="disabled" selected="selected">Select a partnership or consortia</option>
+                <option value = "No partners/consortia used">No partners/consortia used</option>
+                <option value = "Academic department - outside the institution">Academic department - outside the institution</option>
+                <option value = "Academic department - within the institution">Academic department - within the institution</option>
+                <option value = "Acute Care for the Elderly (ACE) Units">Acute Care for the Elderly (ACE) Units</option>
+                <option value = "Alzheimer's Association/Chapters">Alzheimer's Association/Chapters</option>
+                <option value = "Alzheimer's Disease Resource Centers">Alzheimer's Disease Resource Centers</option>
+                <option value = "Ambulatory Practice Sites">Ambulatory Practice Sites</option>
+                <option value = "Area Agencies on Aging">Area Agencies on Aging</option>
+                <option value = "Community - based health center (e.g.; free clinic)">Community - based health center (e.g.; free clinic)</option>
+                <option value = "Community Health Center (CHC)">Community Health Center (CHC)</option>
+                <option value = "Community Mental Health Center">Community Mental Health Center</option>
+                <option value = "Day and home care programs (i.e. Home Health)">Day and home care programs (i.e. Home Health)</option>
+                <option value = "Educational institution (Grades K - 12)">Educational institution (Grades K - 12)</option>
+                <option value = "Federal Government - AHRQ">Federal Government - AHRQ</option>
+                <option value = "Federal Government - CDC">Federal Government - CDC</option>
+                <option value = "Federal Government - Department of Defense/Military">Federal Government - Department of Defense/Military</option>
+                <option value = "Federal Government - FDA, Federal Government - IHS">Federal Government - FDA, Federal Government - IHS</option>
+                <option value = "Federal Government - NIH, Federal Government - Other">Federal Government - NIH, Federal Government - Other</option>
+                <option value = "Federal Government - Other HHS Agency/Office">Federal Government - Other HHS Agency/Office</option>
+                <option value = "Federal Government - Other HRSA Program">Federal Government - Other HRSA Program</option>
+                <option value = "Federal Government - SAMHSA">Federal Government - SAMHSA</option>
+                <option value = "Federal Government - Veterans Affairs">Federal Government - Veterans Affairs</option>
+                <option value = "FQHC or look-alike">FQHC or look-alike</option>
+                <option value = "Geriatric ambulatory care and comprehensive units">Geriatric ambulatory care and comprehensive units</option>
+                <option value = "Geriatric Behavioral or Mental Health Units">Geriatric Behavioral or Mental Health Units</option>
+                <option value = "Geriatric consultation services">Geriatric consultation services</option>
+                <option value = "Health center (e.g.; free clinic)">Health center (e.g.; free clinic)</option>
+                <option value = "Health department - Local">Health department - Local</option>
+                <option value = "Health department - State">Health department - State</option>
+                <option value = "Health department - Tribal">Health department - Tribal</option>
+                <option value = "Health disparities research center">Health disparities research center</option>
+                <option value = "Health insurance/Healthcare Provider Group (e.g.; PPO/HMO)">Health insurance/Healthcare Provider Group (e.g.; PPO/HMO)</option>
+                <option value = "Health policy center">Health policy center</option>
+                <option value = "Hospice">Hospice</option>
+                <option value = "Hospital">Hospital</option>
+                <option value = "Local Government">Local Government</option>
+                <option value = "Long - Term Care Facility">Long - Term Care Facility</option>
+                <option value = "Nonprofit organization (faith - based)">Nonprofit organization (faith - based)</option>
+                <option value = "Nonprofit organization (non - faith based)">Nonprofit organization (non - faith based)</option>
+                <option value = "Nurse Managed Health Clinics">Nurse Managed Health Clinics</option>
+                <option value = "Nursing Home">Nursing Home</option>
+                <option value = "Physical therapy/Rehabilitation center">Physical therapy/Rehabilitation center</option>
+                <option value = "Private/For - profit organization">Private/For - profit organization</option>
+                <option value = "Professional Associations">Professional Associations</option>
+                <option value = "Quality improvement organization">Quality improvement organization</option>
+                <option value = "Senior Center">Senior Center</option>
+                <option value = "State Government">State Government</option>
+                <option value = "State Governmental Programs">State Governmental Programs</option>
+                <option value = "Tribal Government">Tribal Government</option>
+                <option value = "Tribal Organization">Tribal Organization</option>
+                <option value = "Other">Other</option>
+              </select>
+            </div>  
+
+            <div class = "form-group">
+              <label for = "ehbpartnership1">Partnerships (2)</label>
+              <select class = "ehb-select-field form-control" name = "ehbpartnership2" id = "ehbpartnership2-{{this.id}}">
+                <option value="" disabled="disabled" selected="selected">Select a partnership or consortia</option>
+                <option value = "No partners/consortia used">No partners/consortia used</option>
+                <option value = "Academic department - outside the institution">Academic department - outside the institution</option>
+                <option value = "Academic department - within the institution">Academic department - within the institution</option>
+                <option value = "Acute Care for the Elderly (ACE) Units">Acute Care for the Elderly (ACE) Units</option>
+                <option value = "Alzheimer's Association/Chapters">Alzheimer's Association/Chapters</option>
+                <option value = "Alzheimer's Disease Resource Centers">Alzheimer's Disease Resource Centers</option>
+                <option value = "Ambulatory Practice Sites">Ambulatory Practice Sites</option>
+                <option value = "Area Agencies on Aging">Area Agencies on Aging</option>
+                <option value = "Community - based health center (e.g.; free clinic)">Community - based health center (e.g.; free clinic)</option>
+                <option value = "Community Health Center (CHC)">Community Health Center (CHC)</option>
+                <option value = "Community Mental Health Center">Community Mental Health Center</option>
+                <option value = "Day and home care programs (i.e. Home Health)">Day and home care programs (i.e. Home Health)</option>
+                <option value = "Educational institution (Grades K - 12)">Educational institution (Grades K - 12)</option>
+                <option value = "Federal Government - AHRQ">Federal Government - AHRQ</option>
+                <option value = "Federal Government - CDC">Federal Government - CDC</option>
+                <option value = "Federal Government - Department of Defense/Military">Federal Government - Department of Defense/Military</option>
+                <option value = "Federal Government - FDA, Federal Government - IHS">Federal Government - FDA, Federal Government - IHS</option>
+                <option value = "Federal Government - NIH, Federal Government - Other">Federal Government - NIH, Federal Government - Other</option>
+                <option value = "Federal Government - Other HHS Agency/Office">Federal Government - Other HHS Agency/Office</option>
+                <option value = "Federal Government - Other HRSA Program">Federal Government - Other HRSA Program</option>
+                <option value = "Federal Government - SAMHSA">Federal Government - SAMHSA</option>
+                <option value = "Federal Government - Veterans Affairs">Federal Government - Veterans Affairs</option>
+                <option value = "FQHC or look-alike">FQHC or look-alike</option>
+                <option value = "Geriatric ambulatory care and comprehensive units">Geriatric ambulatory care and comprehensive units</option>
+                <option value = "Geriatric Behavioral or Mental Health Units">Geriatric Behavioral or Mental Health Units</option>
+                <option value = "Geriatric consultation services">Geriatric consultation services</option>
+                <option value = "Health center (e.g.; free clinic)">Health center (e.g.; free clinic)</option>
+                <option value = "Health department - Local">Health department - Local</option>
+                <option value = "Health department - State">Health department - State</option>
+                <option value = "Health department - Tribal">Health department - Tribal</option>
+                <option value = "Health disparities research center">Health disparities research center</option>
+                <option value = "Health insurance/Healthcare Provider Group (e.g.; PPO/HMO)">Health insurance/Healthcare Provider Group (e.g.; PPO/HMO)</option>
+                <option value = "Health policy center">Health policy center</option>
+                <option value = "Hospice">Hospice</option>
+                <option value = "Hospital">Hospital</option>
+                <option value = "Local Government">Local Government</option>
+                <option value = "Long - Term Care Facility">Long - Term Care Facility</option>
+                <option value = "Nonprofit organization (faith - based)">Nonprofit organization (faith - based)</option>
+                <option value = "Nonprofit organization (non - faith based)">Nonprofit organization (non - faith based)</option>
+                <option value = "Nurse Managed Health Clinics">Nurse Managed Health Clinics</option>
+                <option value = "Nursing Home">Nursing Home</option>
+                <option value = "Physical therapy/Rehabilitation center">Physical therapy/Rehabilitation center</option>
+                <option value = "Private/For - profit organization">Private/For - profit organization</option>
+                <option value = "Professional Associations">Professional Associations</option>
+                <option value = "Quality improvement organization">Quality improvement organization</option>
+                <option value = "Senior Center">Senior Center</option>
+                <option value = "State Government">State Government</option>
+                <option value = "State Governmental Programs">State Governmental Programs</option>
+                <option value = "Tribal Government">Tribal Government</option>
+                <option value = "Tribal Organization">Tribal Organization</option>
+                <option value = "Other">Other</option>
+              </select>
+            </div>
+
+            <div class = "form-group">
+              <label for = "ehbpartnership1">Partnerships (3)</label>
+              <select class = "ehb-select-field form-control" name = "ehbpartnership3" id = "ehbpartnership3-{{this.id}}">
+              <option value="" disabled="disabled" selected="selected">Select a partnership or consortia</option>
+              <option value = "No partners/consortia used">No partners/consortia used</option>
+              <option value = "Academic department - outside the institution">Academic department - outside the institution</option>
+              <option value = "Academic department - within the institution">Academic department - within the institution</option>
+              <option value = "Acute Care for the Elderly (ACE) Units">Acute Care for the Elderly (ACE) Units</option>
+              <option value = "Alzheimer's Association/Chapters">Alzheimer's Association/Chapters</option>
+              <option value = "Alzheimer's Disease Resource Centers">Alzheimer's Disease Resource Centers</option>
+              <option value = "Ambulatory Practice Sites">Ambulatory Practice Sites</option>
+              <option value = "Area Agencies on Aging">Area Agencies on Aging</option>
+              <option value = "Community - based health center (e.g.; free clinic)">Community - based health center (e.g.; free clinic)</option>
+              <option value = "Community Health Center (CHC)">Community Health Center (CHC)</option>
+              <option value = "Community Mental Health Center">Community Mental Health Center</option>
+              <option value = "Day and home care programs (i.e. Home Health)">Day and home care programs (i.e. Home Health)</option>
+              <option value = "Educational institution (Grades K - 12)">Educational institution (Grades K - 12)</option>
+              <option value = "Federal Government - AHRQ">Federal Government - AHRQ</option>
+              <option value = "Federal Government - CDC">Federal Government - CDC</option>
+              <option value = "Federal Government - Department of Defense/Military">Federal Government - Department of Defense/Military</option>
+              <option value = "Federal Government - FDA, Federal Government - IHS">Federal Government - FDA, Federal Government - IHS</option>
+              <option value = "Federal Government - NIH, Federal Government - Other">Federal Government - NIH, Federal Government - Other</option>
+              <option value = "Federal Government - Other HHS Agency/Office">Federal Government - Other HHS Agency/Office</option>
+              <option value = "Federal Government - Other HRSA Program">Federal Government - Other HRSA Program</option>
+              <option value = "Federal Government - SAMHSA">Federal Government - SAMHSA</option>
+              <option value = "Federal Government - Veterans Affairs">Federal Government - Veterans Affairs</option>
+              <option value = "FQHC or look-alike">FQHC or look-alike</option>
+              <option value = "Geriatric ambulatory care and comprehensive units">Geriatric ambulatory care and comprehensive units</option>
+              <option value = "Geriatric Behavioral or Mental Health Units">Geriatric Behavioral or Mental Health Units</option>
+              <option value = "Geriatric consultation services">Geriatric consultation services</option>
+              <option value = "Health center (e.g.; free clinic)">Health center (e.g.; free clinic)</option>
+              <option value = "Health department - Local">Health department - Local</option>
+              <option value = "Health department - State">Health department - State</option>
+              <option value = "Health department - Tribal">Health department - Tribal</option>
+              <option value = "Health disparities research center">Health disparities research center</option>
+              <option value = "Health insurance/Healthcare Provider Group (e.g.; PPO/HMO)">Health insurance/Healthcare Provider Group (e.g.; PPO/HMO)</option>
+              <option value = "Health policy center">Health policy center</option>
+              <option value = "Hospice">Hospice</option>
+              <option value = "Hospital">Hospital</option>
+              <option value = "Local Government">Local Government</option>
+              <option value = "Long - Term Care Facility">Long - Term Care Facility</option>
+              <option value = "Nonprofit organization (faith - based)">Nonprofit organization (faith - based)</option>
+              <option value = "Nonprofit organization (non - faith based)">Nonprofit organization (non - faith based)</option>
+              <option value = "Nurse Managed Health Clinics">Nurse Managed Health Clinics</option>
+              <option value = "Nursing Home">Nursing Home</option>
+              <option value = "Physical therapy/Rehabilitation center">Physical therapy/Rehabilitation center</option>
+              <option value = "Private/For - profit organization">Private/For - profit organization</option>
+              <option value = "Professional Associations">Professional Associations</option>
+              <option value = "Quality improvement organization">Quality improvement organization</option>
+              <option value = "Senior Center">Senior Center</option>
+              <option value = "State Government">State Government</option>
+              <option value = "State Governmental Programs">State Governmental Programs</option>
+              <option value = "Tribal Government">Tribal Government</option>
+              <option value = "Tribal Organization">Tribal Organization</option>
+              <option value = "Other">Other</option>
+              </select>
+            </div>
+
+            <div class = "form-group">
+              <label for = "ehbpartnership1">Partnerships (4)</label>
+              <select class = "ehb-select-field form-control" name = "ehbpartnership4" id = "ehbpartnership4-{{this.id}}">
+              <option value="" disabled="disabled" selected="selected">Select a partnership or consortia</option>
+              <option value = "No partners/consortia used">No partners/consortia used</option>
+              <option value = "Academic department - outside the institution">Academic department - outside the institution</option>
+              <option value = "Academic department - within the institution">Academic department - within the institution</option>
+              <option value = "Acute Care for the Elderly (ACE) Units">Acute Care for the Elderly (ACE) Units</option>
+              <option value = "Alzheimer's Association/Chapters">Alzheimer's Association/Chapters</option>
+              <option value = "Alzheimer's Disease Resource Centers">Alzheimer's Disease Resource Centers</option>
+              <option value = "Ambulatory Practice Sites">Ambulatory Practice Sites</option>
+              <option value = "Area Agencies on Aging">Area Agencies on Aging</option>
+              <option value = "Community - based health center (e.g.; free clinic)">Community - based health center (e.g.; free clinic)</option>
+              <option value = "Community Health Center (CHC)">Community Health Center (CHC)</option>
+              <option value = "Community Mental Health Center">Community Mental Health Center</option>
+              <option value = "Day and home care programs (i.e. Home Health)">Day and home care programs (i.e. Home Health)</option>
+              <option value = "Educational institution (Grades K - 12)">Educational institution (Grades K - 12)</option>
+              <option value = "Federal Government - AHRQ">Federal Government - AHRQ</option>
+              <option value = "Federal Government - CDC">Federal Government - CDC</option>
+              <option value = "Federal Government - Department of Defense/Military">Federal Government - Department of Defense/Military</option>
+              <option value = "Federal Government - FDA, Federal Government - IHS">Federal Government - FDA, Federal Government - IHS</option>
+              <option value = "Federal Government - NIH, Federal Government - Other">Federal Government - NIH, Federal Government - Other</option>
+              <option value = "Federal Government - Other HHS Agency/Office">Federal Government - Other HHS Agency/Office</option>
+              <option value = "Federal Government - Other HRSA Program">Federal Government - Other HRSA Program</option>
+              <option value = "Federal Government - SAMHSA">Federal Government - SAMHSA</option>
+              <option value = "Federal Government - Veterans Affairs">Federal Government - Veterans Affairs</option>
+              <option value = "FQHC or look-alike">FQHC or look-alike</option>
+              <option value = "Geriatric ambulatory care and comprehensive units">Geriatric ambulatory care and comprehensive units</option>
+              <option value = "Geriatric Behavioral or Mental Health Units">Geriatric Behavioral or Mental Health Units</option>
+              <option value = "Geriatric consultation services">Geriatric consultation services</option>
+              <option value = "Health center (e.g.; free clinic)">Health center (e.g.; free clinic)</option>
+              <option value = "Health department - Local">Health department - Local</option>
+              <option value = "Health department - State">Health department - State</option>
+              <option value = "Health department - Tribal">Health department - Tribal</option>
+              <option value = "Health disparities research center">Health disparities research center</option>
+              <option value = "Health insurance/Healthcare Provider Group (e.g.; PPO/HMO)">Health insurance/Healthcare Provider Group (e.g.; PPO/HMO)</option>
+              <option value = "Health policy center">Health policy center</option>
+              <option value = "Hospice">Hospice</option>
+              <option value = "Hospital">Hospital</option>
+              <option value = "Local Government">Local Government</option>
+              <option value = "Long - Term Care Facility">Long - Term Care Facility</option>
+              <option value = "Nonprofit organization (faith - based)">Nonprofit organization (faith - based)</option>
+              <option value = "Nonprofit organization (non - faith based)">Nonprofit organization (non - faith based)</option>
+              <option value = "Nurse Managed Health Clinics">Nurse Managed Health Clinics</option>
+              <option value = "Nursing Home">Nursing Home</option>
+              <option value = "Physical therapy/Rehabilitation center">Physical therapy/Rehabilitation center</option>
+              <option value = "Private/For - profit organization">Private/For - profit organization</option>
+              <option value = "Professional Associations">Professional Associations</option>
+              <option value = "Quality improvement organization">Quality improvement organization</option>
+              <option value = "Senior Center">Senior Center</option>
+              <option value = "State Government">State Government</option>
+              <option value = "State Governmental Programs">State Governmental Programs</option>
+              <option value = "Tribal Government">Tribal Government</option>
+              <option value = "Tribal Organization">Tribal Organization</option>
+              <option value = "Other">Other</option>
+              </select>
+            </div>
+            
+
+            <div class = "form-group">
+              <label for = "ehbprimarytopicarea">Primary Topic Area</label>
+              <select class = "ehb-select-field form-control" name = "ehbprimarytopicarea" id = "ehbprimarytopicarea-{{this.id}}">
+                <option value="" disabled="disabled" selected="selected">Select the courses primary topic area</option>
+                <option value = "Behavioral Health - Primary Care Integration">Behavioral Health - Primary Care Integration</option>
+                <option value = "Behavioral Health - Substance Abuse - General">Behavioral Health - Substance Abuse - General</option>
+                <option value = "Behavioral Health - Substanse Abuse - Opioids">Behavioral Health - Substanse Abuse - Opioids</option>
+                <option value = "Behavioral Health - Suicide">Behavioral Health - Suicide</option>
+                <option value = "Behavioral Health - Treatment">Behavioral Health - Treatment</option>
+                <option value = "Behavioral Health - Other">Behavioral Health - Other</option>
+                <option value = "Chronic Disease - Alzheimer/Dementia">Chronic Disease - Alzheimer/Dementia</option>
+                <option value = "Chronic Disease - Management">Chronic Disease - Management</option>
+                <option value = "Chronic Disease - Other">Chronic Disease - Other</option>
+                <option value = "Clinical Training - Community-Based Collaboration">Clinical Training - Community-Based Collaboration</option>
+                <option value = "Clinical Training - Cultrual Competency/Health Disparities">Clinical Training - Cultrual Competency/Health Disparities</option>
+                <option value = "Clinical Training - Evidence-based Practice">Clinical Training - Evidence-based Practice</option>
+                <option value = "Clinical Training - Healthcare delivery systems">Clinical Training - Healthcare delivery systems</option>
+                <option value = "Clinical Training - Interprofessional education/team-based training">Clinical Training - Interprofessional education/team-based training</option>
+                <option value = "Clinical Training - Oral Health">Clinical Training - Oral Health</option>
+                <option value = "Clinical Training - Public Health">Clinical Training - Public Health</option>
+                <option value = "Clinical Training - Quality Improvement/Patient Safety">Clinical Training - Quality Improvement/Patient Safety</option>
+                <option value = "Clinical Training - Research">Clinical Training - Research</option>
+                <option value = "Clinical Training - Skills - Communication Skills">Clinical Training - Skills - Communication Skills</option>
+                <option value = "Clinical Training - Skills - Leadership and Managment">Clinical Training - Skills - Leadership and Managment</option>
+                <option value = "Clinical Training - Technology - Simulation-based training">Clinical Training - Technology - Simulation-based training</option>
+                <option value = "Clinical Training - Technology - Other">Clinical Training - Technology - Other</option>
+                <option value = "Clinical Training - Unspecified">Clinical Training - Unspecified</option>
+                <option value = "Infectious Disease - HIV/AIDS">Infectious Disease - HIV/AIDS</option>
+                <option value = "Infectious Disease - Other">Infectious Disease - Other</option>
+                <option value = "Population - Geriatric Health">Population - Geriatric Health</option>
+                <option value = "Population - Maternal Child Health">Population - Maternal Child Health</option>
+                <option value = "Population - Minority Health">Population - Minority Health</option>
+                <option value = "Population - Rural Health">Population - Rural Health</option>
+                <option value = "Population - Veterans Health">Population - Veterans Health</option>
+                <option value = "Population - Womens Health">Population - Womens Health</option>
+                <option value = "Population - Other">Population - Other</option>
+                <option value = "Setting - Medically-Underserved Communities">Setting - Medically-Underserved Communities</option>
+                <option value = "Setting - Primary Care">Setting - Primary Care</option>
+                <option value = "Setting - Rural">Setting - Rural</option>
+                <option value = "Setting - Other">Setting - Other</option>
+                <option value = "Other - Topic Not Listed">Other - Topic Not Listed</option>
+              </select>
+            </div>
+            
+
+            <div class = "form-group">
+              <label for = "ehbcompetencytier">Competency Tier</label>
+              <select class = "ehb-select-field form-control" name = "ehbcompetencytier" id = "ehbcompetencytier-{{this.id}}">
+              <option value="" disabled="disabled" selected="selected">Select the courses competency teir</option>
+              <option value = "Tier 1">Tier 1</option>
+              <option value = "Tier 2">Tier 2</option>
+              <option value = "Tier 3">Tier 3</option>
+              </select>
+            </div>
+            
+
+            <div class = "form-group">
+              <label for = "ehbprimarycomp">Primary Competency</label>
+              <select class = "ehb-select-field form-control" name = "ehbprimarycomp" id = "ehbprimarycomp-{{this.id}}">
+              <option value="" disabled="disabled" selected="selected">Select the courses primary competency</option>
+              <option value = "Analytical/assessment skills">Analytical/assessment skills</option>
+              <option value = "Communication skills">Communication skills</option>
+              <option value = "Community dimensions of practice skills">Community dimensions of practice skills</option>
+              <option value = "Cultural competency skills">Cultural competency skills</option>
+              <option value = "Financial planning and management skills">Financial planning and management skills</option>
+              <option value = "Leadership and systems thinking skills">Leadership and systems thinking skills</option>
+              <option value = "Policy development program planning skills">Policy development program planning skills</option>
+              <option value = "Public health sciences skills">Public health sciences skills</option>
+              <option value = "N/A">N/A</option>
+              </select>
+            </div>
+
+            <button type = "button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type = "button" class="btn btn-primary course-save" data-dismiss="modal" data-internalid = "{{this.id}}">Save changes</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{{/each}}
+
+<br>
+<hr>
+
+<div class = "excel-table-buttons">
+  <a class="btn btn-success btn-lg excel-table" href="/reports/generate-excel/{{reportId}}">Download to Excel</a>
+  <a class="btn btn-primary btn-lg online-table" href="/reports/generate-table/{{reportId}}">View Table Online</a>
+</div>
+
+{{!-- AJAX CALLS FOR GET AND UPDATE --}}
+<script type = "text/javascript">
+  $(".course-link").click(function(e){
+    e.preventDefault();
+    var id = this.getAttribute("data-internalid");
+    $.ajax({
+      type: 'GET',
+      url: '/reports/ehb/' + id,
+      success: function(data, status){
+        if (data.courseDataCompleted) {
+          $("#ehblps-" + id).val(data.lps);
+          $("#ehbcontactname-" + id).val(data.contactName);
+          $("#ehbdurhours-" + id).val(data.durationHours);
+          $("#ehbnumtimesoffered-" + id).val(data.numTimesOffered);
+          $("#ehbdeliverymode-" + id).val(data.deliveryMode);
+          $("#ehbpartnership1-" + id).val(data.partnerships1);
+          $("#ehbpartnership2-" + id).val(data.partnerships2);
+          $("#ehbpartnership3-" + id).val(data.partnerships3);
+          $("#ehbpartnership4-" + id).val(data.partnerships4);
+          $("#ehbprimarytopicarea-" + id).val(data.coursePrimaryTopicArea);
+          $("#ehbcompetencytier-" + id).val(data.competencyTier);
+          $("#ehbprimarycomp-" + id).val(data.primaryCompetency);
+          var dateOfTraining = new Date(data.dateOfTraining).toISOString().substring(0, 10);
+          $("#ehbdateoftraining-" + id).val(dateOfTraining);
+          if (data.approvedContEd){
+            $("#ehbappcontedu-" + id).prop('checked', true);
+          }
+        } else {
+          $("#form-body-" + id)[0].reset();
+        }
+      }
+    });
+  });
+
+  $(".course-save").click(function(e){
+    e.preventDefault();
+    var id = this.getAttribute("data-internalid");
+    var data = $("#form-body-" + id).serializeArray().reduce(function(obj, item) {
+      obj[item.name] = item.value;
+      return obj;
+    }, {});
+    $.ajax({
+      type: 'POST',
+      data: JSON.stringify(data),
+      contentType: 'application/json',
+      url: '/reports/ehb/' + id,
+      success: function(){
+        $("#formCheck-" + id).removeClass("fa-times");
+        $("#formCheck-" + id).addClass("fa-check");
+        var boxStyle = $("#formCheck-" + id).parent()[0];
+        $(boxStyle).removeClass("ehb-incomplete");
+        $(boxStyle).addClass("ehb-complete");
+      }
+    });
+  });
+</script>

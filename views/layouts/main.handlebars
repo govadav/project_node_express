@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {{>head}}
+  <title>Moodle Data</title>
+</head>
+ 
+<body class = "page-backing">
+  {{>navbar}}
+  <div class="container page-content">
+    {{#if success_msg}}
+      <div class = "alert alert-success">{{success_msg}}</div>
+    {{/if}}
+    {{#if error_msg}}
+      <div class = "alert alert-danger">{{error_msg}}</div>
+    {{/if}}
+    {{#if error}}
+      <div class = "alert alert-danger">{{error}}</div>
+    {{/if}}
+    {{{body}}}
+  </div>
+  {{>footer}}
+</body>
+</html>
+ 

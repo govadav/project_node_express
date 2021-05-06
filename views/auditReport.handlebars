@@ -1,0 +1,21 @@
+<h2>Audit Enrollment Per Course from {{fromDate}} to {{toDate}}</h2>
+<table id = "audit-table" class="table table-striped">
+  <thead class="thead">
+    <tr>
+      <th>Course Name</th>
+      <th>Number of Students Auditing Course </th>
+    </tr>
+  </thead>
+  <tbody>
+  {{#each courses}}
+    <tr>
+      <td>{{this.courseName}}</td>
+      <td>{{this.numberOfStudents}}</td>
+    </tr>
+  {{/each}}
+  </tbody>
+</table>
+
+<div class = "excel-table-buttons">
+  <a class="btn btn-success btn-lg excel-table" href="/reports/generate-excel/{{reportId}}">Download to Excel</a>
+</div>

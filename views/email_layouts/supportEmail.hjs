@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <div>
+    <p>From: {{fullname}}</p>
+    <p>Email: {{userEmail}}</p>
+    <p>Subject: {{ticketSubject}}</p>
+    <p>Body: {{ticketBody}}</p>
+  </div>
+</body>
+</html>

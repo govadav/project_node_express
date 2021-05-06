@@ -1,0 +1,126 @@
+
+  <h2>Grade Data Per Course from {{fromDate}} to {{toDate}}</h2>
+ 
+<div class = "excel-table-buttons">
+    <a class="btn btn-success btn-lg excel-table" href="/reports/generate-excel/{{reportId}}">Download to Excel</a>
+    <a class="btn btn-primary btn-lg online-table" href="/reports/generate-table/{{reportId}}">View Table Online</a>
+</div>
+<br>
+{{#each courses}}
+  {{#eq this.courseDataCompleted false}}
+    <div class = "pp-course-select-line pp-incomplete">
+      <i id = "formCheck-{{this.id}}" class="ebh-fa-times fa fa-times" aria-hidden="true"></i>   
+  {{else}}
+    <div class = "pp-course-select-line pp-complete">
+      <i id = "formCheck-{{this.id}}" class="ebh-fa-times fa fa-check" aria-hidden="true"></i>   
+  {{/eq}}
+    <a class = "course-link pp-course-select-link" data-toggle = "modal" data-target = "#form-{{this.courseId}}" data-internalid = "{{this.id}}" >{{this.courseName}}</a>  
+   </div>
+
+  <div class="modal fade" id="form-{{this.courseId}}" tabindex="-1" role="dialog" aria-labelledby="ppCourseName" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content modal-lg">
+        <div class="modal-header modal-lg"> {{!-- Form header content --}}
+          <h5 class="modal-title" id="ppCourseName">{{this.courseName}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body modal-lg" id = "modal-{{this.id}}">{{!-- Form body content --}}
+          <form id = "form-body-{{this.id}}" class = "prebuilt-moodle-reports" method = "post" action = "/reports/grades/{{this.id}}">
+            <div class = "pp-form-top-control">
+              <div class = "form-group pp-text-input-block">
+                <label class = "pp-text-label" for = "pplps">Reporting LPS</label>
+                <input class = "pp-text-field form-control" type = "text" name = "pplps" id = "pplps-{{this.id}}" placeholder = "ex. LPHI" required>
+              </div>
+
+              <div class = "form-group pp-text-input-block">
+                <label class = "pp-text-label" for = "ppcontactname">Contact Name</label>
+                <input class = "pp-text-field form-control" type = "text" name = "ppcontactname" id = "ppcontactname-{{this.id}}">
+              </div>
+
+              <div class = "form-group pp-text-input-block">
+                <label class = "pp-text-label" for = "ppdateoftraining">Date of Training</label>
+                <input class = "pp-date-field form-control" type = "date" name = "ppdateoftraining" id = "ppdateoftraining-{{this.id}}">
+              </div>
+
+              <div class = "form-group pp-text-input-block">
+                <label class = "pp-text-label" for = "ppnumcertification">Number Using for Certification</label>
+                <input class = "pp-text-field form-control" type = "number" name = "ppnumcertification" id = "ppnumcertification-{{this.id}}">
+              </div>
+
+              <div class = "form-group pp-text-input-block">
+                <label class = "pp-text-label" for = "ppreasonnotcollected">Reason Pre/Post Not Collected </label>
+                <input class = "pp-text-field form-control" type = "text" name = "ppreasonnotcollected" id = "ppreasonnotcollected-{{this.id}}">
+              </div>
+
+              <button type = "button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type = "button" class="btn btn-primary course-save" data-dismiss="modal" data-internalid = "{{this.id}}">Save changes</button>
+
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+{{/each}}
+<br>
+<hr>
+{{!-- AJAX CALLS FOR GET AND UPDATE --}}
+<script type = "text/javascript">
+  $(".course-link").click(function(e){
+    e.preventDefault();
+    var id = this.getAttribute("data-internalid");
+    $.ajax({
+      type: 'GET',
+      url: '/reports/grades/' + id,
+      success: function(data, status){
+        if (data.courseDataCompleted) {
+          $("#pplps-" + id).val(data.lps);
+          $("#ppcontactname-" + id).val(data.contactName);
+          $("#ppnumpretestque-" + id).val(data.numPretestQue);
+          $("#ppnumposttestque-" + id).val(data.numPosttestQue);
+          $("#ppoldnumpretestque-" + id).val(data.numoldPretestQue);
+          $("#ppoldnumposttestque-" + id).val(data.numoldPosttestQue);
+          $("#ppnumcertification-" + id).val(data.numCertification);
+          $("#ppreasonnotcollected-" + id).val(data.Reason);
+          var dateOfTraining = new Date(data.dateOfTraining).toISOString().substring(0, 10);
+          $("#ppdateoftraining-" + id).val(dateOfTraining);
+        } else {
+          $("#form-body-" + id)[0].reset();
+        }
+      }
+    });
+  });              
+              
+  $(".course-save").click(function(e){
+    e.preventDefault();
+    var id = this.getAttribute("data-internalid");
+    var data = $("#form-body-" + id).serializeArray().reduce(function(obj, item) {
+      obj[item.name] = item.value;
+      return obj;
+    }, {});
+    $.ajax({
+      type: 'POST',
+      data: JSON.stringify(data),
+      contentType: 'application/json',
+      url: '/reports/grades/' + id,
+      success: function(){
+        $("#formCheck-" + id).removeClass("fa-times");
+        $("#formCheck-" + id).addClass("fa-check");
+        var boxStyle = $("#formCheck-" + id).parent()[0];
+        $(boxStyle).removeClass("pp-incomplete");
+        $(boxStyle).addClass("pp-complete");
+      }
+    });
+  });
+</script> 
+
+ 
+
+
+ 
+

@@ -1,0 +1,101 @@
+<h2 class = "report-title">Common Metrics Report</h2>
+
+<div class = "button-table-block">
+  <a class="btn btn-primary btn-md excel-table" href="/reports/viewreport/{{reportId}}">Continue Working</a>
+  <a class="btn btn-success btn-md excel-table" href="/reports/generate-excel/{{reportId}}">Download to Excel</a>
+</div>
+
+<div class = "table-block">
+  <table id = "ehb-table" class = "table table-striped">
+
+    <thead class = "thead">
+      <tr>
+        <th colspan = "4">Reporting Information</th>
+        <th colspan = "16">CE1</th>
+        <th colspan = "14">CE2</th>
+      </tr>
+      <tr>
+        <th>LPS</th>
+        <th>Reporting Period</th>
+        <th>Contact Name</th>
+        <th>Date of Training (Live Only)</th>
+        <th>Course Title</th>
+        <th>Course Approved For Continuing Education Credit</th>
+        <th>Duration of Course in Hours</th>
+        <th>Number of Times Course was Offered</th>
+        <th>Delivery Mode of Course</th>
+        <th>Select Type(s) of Partnership(s) Established for the Purposes of Delivering this Course (1)</th>
+        <th>Select Type(s) of Partnership(s) Established for the Purposes of Delivering this Course (2)</th>
+        <th>Select Type(s) of Partnership(s) Established for the Purposes of Delivering this Course (3)</th>
+        <th>Select Type(s) of Partnership(s) Established for the Purposes of Delivering this Course (4)</th>
+        <th>Select Whether Employment Location Data are Available for Individuals Trained</th>
+        <th>Enter # of Individuals Trained in a Primary Care Setting</th>
+        <th>Enter # of Individuals Trained in a Medically Underserved Community</th>
+        <th>Enter # of Individuals Trained in a Rural Area</th>
+        <th>Select the Course's Primary Topic Area</th>
+        <th>Select the Primary Competency Addressed by the Course</th>
+        <th>Select the Competency Tier for this Course</th>
+        <th>Enter Total # of Individuals Trained</th>
+        <th>Select Profession and Discipline of Individuals Trained (1)<th>
+        <th>Enter # Trained in this Profession and Discipline</th>
+        <th>Select Profession and Discipline of Individuals Trained (2)<th>
+        <th>Enter # Trained in this Profession and Discipline</th>
+        <th>Select Profession and Discipline of Individuals Trained (3)<th>
+        <th>Enter # Trained in this Profession and Discipline</th>
+        <th>Select Profession and Discipline of Individuals Trained (4)<th>
+        <th>Enter # Trained in this Profession and Discipline</th>
+        <th>Select Profession and Discipline of Individuals Trained (5)<th>
+        <th>Enter # Trained in this Profession and Discipline</th>
+        <th>Select Profession and Discipline of Individuals Trained (6)<th>
+        <th>Enter # Trained in this Profession and Discipline</th>
+        <th>Enter Remaining # of Trainees for this Course</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each data}}
+      <tr>
+        <td>{{this.lps}}</td>
+        <td>{{this.reportingPeriodFrom}} - {{this.reportingPeriodTo}}</td>
+        <td>{{this.contactName}}</td>
+        <td>{{this.dateOfTraining}}</td>
+        <td>{{this.courseName}}</td>
+        <td>{{this.approvedContEd}}</td>
+        <td>{{this.durationHours}}</td>
+        <td>{{this.numTimesOffered}}</td>
+        <td>{{this.deliveryMode}}</td>
+        <td>{{this.partnerships1}}</td>
+        <td>{{this.partnerships2}}</td>
+        <td>{{this.partnerships3}}</td>
+        <td>{{this.partnerships4}}</td>
+        <td>{{this.locationDataAvail}}</td>
+        <td>{{this.numTrainedPrimaryCare}}</td>
+        <td>{{this.numTrainedMedUnderServed}}</td>
+        <td>{{this.numTrainedRural}}</td>
+        <td>{{this.coursePrimaryTopicArea}}</td>
+        <td>{{this.primaryCompetency}}</td>
+        <td>{{this.competencyTier}}</td>
+        <td>{{this.numTrained}}</td>
+        <td>{{this.profession1}}</td>
+        <td>{{this.numProf1}}</td>
+        <td>{{this.profession2}}</td>
+        <td>{{this.numProf2}}</td>
+        <td>{{this.profession3}}</td>
+        <td>{{this.numProf3}}</td>
+        <td>{{this.profession4}}</td>
+        <td>{{this.numProf4}}</td>
+        <td>{{this.profession5}}</td>
+        <td>{{this.numProf5}}</td>
+        <td>{{this.profession6}}</td>
+        <td>{{this.numProf6}}</td>
+        <td>{{this.numProfOther}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+
+  </table>
+</div>
+
+<div class = "excel-table-buttons">
+  <a class="btn btn-success btn-lg excel-table" href="/reports/generate-excel/{{reportId}}">Download to Excel</a>
+  <a class="btn btn-primary btn-lg excel-table" href="/reports/viewreport/{{reportId}}">Continue Working</a>
+</div>

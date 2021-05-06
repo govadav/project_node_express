@@ -1,0 +1,154 @@
+<h2>Common Metrics Report: {{fromDate}} -- {{toDate}}</h2>
+<hr/>
+ 
+{{#each courses}}
+  {{#eq this.courseDataCompleted false}}
+  <div class = "cm-course-select-line cm-incomplete">
+    <i id = "formCheck-{{this.id}}" class="cm-fa-times fa fa-times" aria-hidden="true"></i>
+  {{else}}
+  <div class = "cm-course-select-line cm-complete">
+    <i id = "formCheck-{{this.id}}" class="cm-fa-check fa fa-check" aria-hidden="true"></i>
+  {{/eq}}
+
+  {{#eq this.visible false}}
+    <a class = "course-link cm-course-select-link" data-toggle = "modal" data-target = "#form-{{this.courseId}}" data-internalid = "{{this.id}}" >{{this.courseName}} [COURSE UNLISTED]</a>
+  {{else}}
+    <a class = "course-link cm-course-select-link" data-toggle = "modal" data-target = "#form-{{this.courseId}}" data-internalid = "{{this.id}}" >{{this.courseName}}</a>
+  {{/eq}}
+    
+  </div>
+
+  <div class="modal fade" id="form-{{this.courseId}}" tabindex="-1" role="dialog" aria-labelledby="cmCourseName" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content modal-lg">
+        <div class="modal-header modal-lg">
+          {{#eq this.visible false}}
+            <h5 class="modal-title" id="cmCourseName">{{this.courseName}} [COURSE UNLISTED]</h5>
+          {{else}}
+            <h5 class="modal-title" id="cmCourseName">{{this.courseName}}</h5>
+          {{/eq}}
+          
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body modal-lg" id = "modal-{{this.id}}">
+          <form id = "form-body-{{this.id}}" class = "prebuilt-moodle-reports" method = "post" action = "/reports/commonmetrics/{{this.id}}">
+            <div class = "cm-form-top-control">
+              <div class = "form-group cm-text-input-block">
+                <label class = "cm-text-label" for = "cmlps">Reporting LPS</label>
+                <input class = "cm-text-field form-control" type = "text" name = "cmlps" id = "cmlps-{{this.id}}" placeholder = "ex. LPHI" required>
+              </div>
+
+              <div class = "form-group cm-text-input-block">
+                <label class = "cm-text-label" for = "cmcontactname">Contact Name</label>
+                <input class = "cm-text-field form-control" type = "text" name = "cmcontactname" id = "cmcontactname-{{this.id}}">
+              </div>
+
+              <div class = "form-group cm-text-input-block">
+                <label class = "cm-text-label" for = "cmdurhours">Course Duration Hours</label>
+                <input class = "cm-text-field form-control" type = "text" name = "cmdurhours" id = "cmdurhours-{{this.id}}">
+              </div>
+
+              <div class = "form-group cm-text-input-block">
+                <label class = "cm-text-label" for = "cmnumtimesoffered">Number of Times Training Was Offered</label>
+                <input class = "cm-text-field form-control" type = "text" name = "cmnumtimesoffered" id = "cmnumtimesoffered-{{this.id}}">
+              </div>
+
+              <div class = "form-group cm-text-input-block">
+                <label class = "cm-text-label" for = "cmdateoftraining">Date of Training</label>
+                <input class = "cm-date-field form-control" type = "date" name = "cmdateoftraining" id = "cmdateoftraining-{{this.id}}">
+              </div>
+            </div>
+
+            <div class = "form-group">
+              <label for = "cmdeliverymode">Mode of Delivery</label>
+              <select class = "cm-select-field form-control" name = "cmdeliverymode" id = "cmdeliverymode-{{this.id}}">
+                <option value="" disabled="disabled" selected="selected">Select a delivery mode</option>
+                <option value = "Archived/Self-paced Distance Learning">Archived/Self-paced Distance Learning</option>
+                <option value = "Classroom-based">Classroom-based</option>
+                <option value = "Hybrid">Hybrid</option>
+                <option value = "Real-time/Live Distance Learning">Real-time/Live Distance Learning</option>
+              </select>
+            </div>
+
+            <div class = "form-group">
+              <label for = "cmprimarycomp">Primary Competency</label>
+              <select class = "cm-select-field form-control" name = "cmprimarycomp" id = "cmprimarycomp-{{this.id}}">
+              <option value="" disabled="disabled" selected="selected">Select the courses primary competency</option>
+              <option value = "Analytical/assessment skills">Analytical/assessment skills</option>
+              <option value = "Communication skills">Communication skills</option>
+              <option value = "Community dimensions of practice skills">Community dimensions of practice skills</option>
+              <option value = "Cultural competency skills">Cultural competency skills</option>
+              <option value = "Financial planning and management skills">Financial planning and management skills</option>
+              <option value = "Leadership and systems thinking skills">Leadership and systems thinking skills</option>
+              <option value = "Policy development program planning skills">Policy development program planning skills</option>
+              <option value = "Public health sciences skills">Public health sciences skills</option>
+              <option value = "N/A">N/A</option>
+              </select>
+            </div>
+
+            <button type = "button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type = "button" class="btn btn-primary course-save" data-dismiss="modal" data-internalid = "{{this.id}}">Save changes</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{{/each}}
+
+<br>
+<hr>
+
+<div class = "excel-table-buttons">
+  <a class="btn btn-success btn-lg excel-table" href="/reports/generate-excel/{{reportId}}">Download to Excel</a>
+  <a class="btn btn-primary btn-lg online-table" href="/reports/generate-table/{{reportId}}">View Table Online</a>
+</div>
+
+{{!-- AJAX CALLS FOR GET AND UPDATE --}}
+<script type = "text/javascript">
+  $(".course-link").click(function(e){
+    e.preventDefault();
+    var id = this.getAttribute("data-internalid");
+    $.ajax({
+      type: 'GET',
+      url: '/reports/commonmetrics/' + id,
+      success: function(data, status){
+        if (data.courseDataCompleted) {
+          $("#cmlps-" + id).val(data.lps);
+          $("#cmcontactname-" + id).val(data.contactName);
+          $("#cmdurhours-" + id).val(data.durationHours);
+          $("#cmnumtimesoffered-" + id).val(data.numTimesOffered);
+          $("#cmdeliverymode-" + id).val(data.deliveryMode);
+          $("#cmprimarycomp-" + id).val(data.primaryCompetency);
+          var dateOfTraining = new Date(data.dateOfTraining).toISOString().substring(0, 10);
+          $("#cmdateoftraining-" + id).val(dateOfTraining);
+        } else {
+          $("#form-body-" + id)[0].reset();
+        }
+      }
+    });
+  });              
+              
+  $(".course-save").click(function(e){
+    e.preventDefault();
+    var id = this.getAttribute("data-internalid");
+    var data = $("#form-body-" + id).serializeArray().reduce(function(obj, item) {
+      obj[item.name] = item.value;
+      return obj;
+    }, {});
+    $.ajax({
+      type: 'POST',
+      data: JSON.stringify(data),
+      contentType: 'application/json',
+      url: '/reports/commonmetrics/' + id,
+      success: function(){
+        $("#formCheck-" + id).removeClass("fa-times");
+        $("#formCheck-" + id).addClass("fa-check");
+        var boxStyle = $("#formCheck-" + id).parent()[0];
+        $(boxStyle).removeClass("cm-incomplete");
+        $(boxStyle).addClass("cm-complete");
+      }
+    });
+  });
+</script> 
